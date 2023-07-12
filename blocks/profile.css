@@ -90,7 +90,7 @@
     height: 16px;
     align-self: center;
     margin: 17px 132px; */
-    background-image: url("../images/Add\ Button.png");
+    content: url("../images/Add.png");
     width: 150px;
     height: 50px;
     
@@ -119,9 +119,9 @@
     }
     
     .profile__add-button-picture{
-        background-image: url("../images/Vectorplus-sign.png");
-        background-repeat: none;
+        content: url("../images/Vectorplus-sign.png");
         background-position: center;
+        border-style: none;
         width: 20px;
         height: 20px;
         margin: 0;
@@ -170,7 +170,7 @@
     
 
     .profile__add-button-picture{
-        background-image: url("../images/Vectorplus-sign.png");
+        content: url("../images/Vectorplus-sign.png");
         width: 16px;
         height: 16px;
         align-self: center;
