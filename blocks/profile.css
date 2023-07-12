@@ -29,7 +29,7 @@
     line-height: 48px;
     font-weight: 500;
     grid-area: name;
-    margin: 22px 18px 7px calc((150px - 127.5px) + 3.75px); 
+    margin: 22px 18px 7px calc((150px - 127.5px) + 3.75px);
     display: inline-block;
     text-overflow: ellipsis;
     white-space: nowrap;
