@@ -1,21 +1,28 @@
 # Project 3: Around The U.S.
+# Aidan Ward 7/2023
 
 ### Overview  
 
 * Intro  
-* Figma  
+* Techniques Used
 * Images  
+* GitHub Pages Link  
   
 **Intro**
   
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.  
+This project is made so that all the elements are displayed correctly on popular screen sizes. Try scaling the window by width and notice how elements adapt to their new environment. 
   
-**Figma**  
-  
-* [Link to the project on Figma](https://www.figma.com/file/ii4xxsJ0ghevUOcssTlHZv/Sprint-3%3A-Around-the-US?node-id=0%3A1)  
+**Techniques Used**  
+ The following techniques were used in order to achieve smooth scaling across a variable screen sizes
+ 
+ - Advanced grid layout
+ - Relative dimensions
+ - Media queries
   
 **Images**  
-  
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-  
-Good luck and have fun!
+
+--- In progress --
+
+**GitHub Pages Link**
+
+https://aidanward19.github.io/se_project_aroundtheus
