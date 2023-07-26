@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -55,8 +55,6 @@ function handleFormSubmit(event) {
   event.preventDefault();
   profileName.textContent = profileModalName.value;
   profileTitle.textContent = profileModalTitle.value;
-  profileModalName.placeholder = `${profileModalName.value}`;
-  profileModalTitle.placeholder = `${profileModalTitle.value}`;
   profileModalName.value = "";
   profileModalTitle.value = "";
   profileEditModal.classList.toggle("modal_opened");
