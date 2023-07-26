@@ -33,9 +33,31 @@ const profileEditModal = document.querySelector(".modal");
 const profileModalCloseBtn = document.querySelector(".modal__close");
 
 profileEditBtn.addEventListener("click", () => {
-  profileEditModal.classList.add("modal_opened");
+  profileEditModal.classList.toggle("modal_opened");
 });
 
 profileModalCloseBtn.addEventListener("click", () => {
-  profileEditModal.classList.remove("modal_opened");
+  profileEditModal.classList.toggle("modal_opened");
 });
+
+const profileModalName = document.querySelector(".modal__name");
+const profileModalTitle = document.querySelector(".modal__title");
+const profileName = document.querySelector(".profile__name");
+const profileTitle = document.querySelector(".profile__title");
+
+const profileModalForm = document.querySelector(".modal__form");
+
+function handleFormSubmit(event) {
+  event.preventDefault();
+  profileName.textContent = profileModalName.value;
+  profileTitle.textContent = profileModalTitle.value;
+  profileModalName.placeholder = `${profileModalName.value}`;
+  profileModalTitle.placeholder = `${profileModalTitle.value}`;
+  profileModalName.value = "";
+  profileModalTitle.value = "";
+  profileEditModal.classList.toggle("modal_opened");
+}
+
+profileModalForm.addEventListener("submit", handleFormSubmit);
+
+function getCardElement(data) {}
