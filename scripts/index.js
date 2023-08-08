@@ -59,7 +59,7 @@ profileEditBtn.addEventListener("click", () => {
 });
 
 profileModalCloseBtn.addEventListener("click", () => {
-  profileEditModal.classList.toggle("modal_opened");
+  toggleModal(profileEditModal);
 });
 
 function toggleModal(modal) {
@@ -88,7 +88,12 @@ addPicModalForm.addEventListener("submit", handleAddPicture);
 
 function handleAddPicture(event) {
   event.preventDefault();
+  const name = addPicModalName.value;
+  const link = addPicModalLink.value;
+  renderCard({ name, link });
+  toggleModal(addPicModal);
 }
+
 //
 //  Gallery
 //
@@ -107,7 +112,9 @@ function getCardElement(data) {
   return cardElement;
 }
 
-initialCards.forEach((cardData) => {
+initialCards.forEach((cardData) => renderCard(cardData));
+
+function renderCard(cardData) {
   const cardElement = getCardElement(cardData);
-  cardListElement.append(cardElement);
-});
+  cardListElement.prepend(getCardElement(cardData));
+}
