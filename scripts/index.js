@@ -29,18 +29,17 @@ const initialCards = [
 ];
 
 //
-//    Profile
+//    Profile Modal
 //
 
 const profileEditBtn = document.querySelector(".profile__edit-button");
-const profileEditModal = document.querySelector(".modal");
-const profileModalCloseBtn = document.querySelector(".modal__close");
+const profileEditModal = document.querySelector("#edit-modal");
+const profileModalCloseBtn = profileEditModal.querySelector(".modal__close");
 const profileModalName = document.querySelector(".modal__name");
 const profileModalTitle = document.querySelector(".modal__title");
 const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
-
-const profileModalForm = document.querySelector(".modal__form");
+const profileModalForm = profileEditModal.querySelector(".modal__form");
 
 function handleFormSubmit(event) {
   event.preventDefault();
@@ -56,13 +55,40 @@ profileModalForm.addEventListener("submit", handleFormSubmit);
 profileEditBtn.addEventListener("click", () => {
   profileModalName.value = profileName.textContent;
   profileModalTitle.value = profileTitle.textContent;
-  profileEditModal.classList.toggle("modal_opened");
+  toggleModal(profileEditModal);
 });
 
 profileModalCloseBtn.addEventListener("click", () => {
   profileEditModal.classList.toggle("modal_opened");
 });
 
+function toggleModal(modal) {
+  modal.classList.toggle("modal_opened");
+}
+//
+//  Add Modal
+//
+
+const addPicModal = document.querySelector("#add-modal");
+const addPicBtn = document.querySelector(".profile__add-button");
+const addPicModalCloseBtn = addPicModal.querySelector(".modal__close");
+const addPicModalForm = addPicModal.querySelector(".modal__form");
+const addPicModalName = addPicModal.querySelector(".modal__image-name");
+const addPicModalLink = addPicModal.querySelector(".modal__image-link");
+
+addPicBtn.addEventListener("click", () => {
+  toggleModal(addPicModal);
+});
+
+addPicModalCloseBtn.addEventListener("click", () => {
+  toggleModal(addPicModal);
+});
+
+addPicModalForm.addEventListener("submit", handleAddPicture);
+
+function handleAddPicture(event) {
+  event.preventDefault();
+}
 //
 //  Gallery
 //
