@@ -99,7 +99,6 @@ function handleAddPicture(event) {
 //
 
 const imageModal = document.querySelector("#image-modal");
-const imageModalBtns = document.querySelectorAll(".card__image");
 const imageModalCloseBtn = imageModal.querySelector(".modal__close");
 
 const cardTemplate =
@@ -110,14 +109,20 @@ function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageElement = cardElement.querySelector(".card__image");
   const cardTitleElement = cardElement.querySelector(".card__title");
+  const imageDeleteBtn = cardElement.querySelector(".card__delete");
   cardTitleElement.textContent = data.name;
   cardImageElement.alt = data.name;
   cardImageElement.src = data.link;
   cardImageElement.addEventListener("click", () => {
     const popUpImage = imageModal.querySelector(".modal__image-preview");
+    const popUpCaption = imageModal.querySelector(".modal__image-caption");
     popUpImage.src = cardImageElement.src;
+    popUpImage.alt = cardImageElement.alt;
+    popUpCaption.textContent = cardTitleElement.textContent;
     toggleModal(imageModal);
   });
+
+  imageDeleteBtn.addEventListener("click", () => cardElement.remove());
 
   return cardElement;
 }
