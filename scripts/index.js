@@ -98,6 +98,10 @@ function handleAddPicture(event) {
 //  Gallery
 //
 
+const imageModal = document.querySelector("#image-modal");
+const imageModalBtns = document.querySelectorAll(".card__image");
+const imageModalCloseBtn = imageModal.querySelector(".modal__close");
+
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const cardListElement = document.querySelector(".gallery__cards");
@@ -109,6 +113,12 @@ function getCardElement(data) {
   cardTitleElement.textContent = data.name;
   cardImageElement.alt = data.name;
   cardImageElement.src = data.link;
+  cardImageElement.addEventListener("click", () => {
+    const popUpImage = imageModal.querySelector(".modal__image-preview");
+    popUpImage.src = cardImageElement.src;
+    toggleModal(imageModal);
+  });
+
   return cardElement;
 }
 
@@ -118,3 +128,28 @@ function renderCard(cardData) {
   const cardElement = getCardElement(cardData);
   cardListElement.prepend(getCardElement(cardData));
 }
+
+//
+// Card Like Button
+//
+
+const likeButtons = document.querySelectorAll(".card__like-button");
+likeButtons.forEach((likeButton) => {
+  likeButton.addEventListener("click", () =>
+    likeButton.classList.toggle("card__like-button_active")
+  );
+});
+
+//
+// Gallery Modal
+//
+
+/*
+imageModalBtns.forEach((imageModalBtn) => {
+  imageModalBtn.addEventListener("click", () => toggleModal(imageModal));
+});
+*/
+
+imageModalCloseBtn.addEventListener("click", () => {
+  toggleModal(imageModal);
+});

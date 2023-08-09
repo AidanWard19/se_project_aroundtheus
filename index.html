@@ -122,19 +122,28 @@
       </div>
     </div>
 
+    <div class="modal" id="image-modal">
+      <div class="modal__image-container">
+        <button
+          class="modal__close"
+          id="modal__close-add"
+          type="button"
+        ></button>
+        <img class="modal__image-preview" src=" " alt=" " />
+      </div>
+    </div>
+
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="" />
-
+        <img
+          class="card__delete"
+          src="./images/Trash.svg"
+          alt="delete button"
+        />
         <div class="card__description">
           <h2 class="card__title"></h2>
-          <button class="card__like-button" type="button">
-            <img
-              class="card__heart"
-              src="./images/Group.svg"
-              alt="Like button"
-            />
-          </button>
+          <button class="card__like-button" type="button"></button>
         </div>
       </li>
     </template>

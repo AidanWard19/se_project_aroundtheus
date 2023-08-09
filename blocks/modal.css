@@ -29,6 +29,20 @@
   justify-content: stretch;
 }
 
+.modal__image-container {
+  background-color: none;
+  position: relative;
+  margin: auto;
+}
+
+.modal__image-preview {
+  max-width: 75vw;
+  max-height: 75vh;
+  margin: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .modal__heading {
   height: 23px;
   width: 100%;
