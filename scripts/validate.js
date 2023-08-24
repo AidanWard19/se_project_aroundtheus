@@ -6,7 +6,7 @@ function showInputError(formElement, inputElement, options) {
     `#${inputElement.id}-redline`
   );
   console.log(errorMessageRedLine);
-  errorMessageRedLine.classList.add("modal__text-underline-red");
+  errorMessageRedLine.classList.add(options.inputErrorClass);
   errorMessageElement.textContent = inputElement.validationMessage;
   errorMessageElement.classList.add(options.errorClass);
 }
@@ -18,7 +18,7 @@ function hideInputError(formElement, inputElement, options) {
   const errorMessageRedLine = formElement.querySelector(
     `#${inputElement.id}-redline`
   );
-  errorMessageRedLine.classList.remove("modal__text-underline-red");
+  errorMessageRedLine.classList.remove(options.inputErrorClass);
   errorMessageElement.textContent = "";
   errorMessageElement.classList.remove(options.errorClass);
 }
@@ -35,7 +35,7 @@ function setEventListeners(formElement, options) {
   const inputElements = Array.from(
     formElement.querySelectorAll(options.inputSelector)
   );
-  const submitButton = formElement.querySelector(".modal__button");
+  const submitButton = formElement.querySelector(options.submitButtonSelector);
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", (event) => {
       checkInputValidity(formElement, inputElement, options);
@@ -83,7 +83,7 @@ const config = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__input_type_error",
+  inputErrorClass: "modal__text-underline-red",
   errorClass: "modal__error_visible",
 };
 
