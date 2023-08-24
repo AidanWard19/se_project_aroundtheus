@@ -48,6 +48,14 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const cardListElement = document.querySelector(".gallery__cards");
 
+function setModalClickAwayListener(modal) {
+  modal.addEventListener("click", () => {
+    modal.classList.remove("modal_opened");
+  });
+}
+const modals = Array.from(document.querySelectorAll(".modal"));
+modals.forEach((modal) => setModalClickAwayListener(modal));
+
 function handleEditProfileFormSubmit(event) {
   event.preventDefault();
   profileName.textContent = profileModalName.value;
@@ -118,6 +126,19 @@ addPicBtn.addEventListener("click", () => {
 
 addPicModalCloseBtn.addEventListener("click", () => {
   toggleModal(addPicModal);
+});
+
+function closeAllModals() {
+  profileEditModal.classList.remove("modal_opened");
+  addPicModal.classList.remove("modal_opened");
+  imageModal.classList.remove("modal_opened");
+}
+
+document.addEventListener("keydown", (event) => {
+  console.log(event.key);
+  if (event.key === "Escape") {
+    closeAllModals();
+  }
 });
 
 addPicModalForm.addEventListener("submit", handleAddPicture);
