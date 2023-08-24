@@ -132,7 +132,7 @@
   color: #000;
   opacity: 0.2;
   border: 1px solid rgba(0, 0, 0, 1);
-  cursor: pointer;
+  cursor: default;
 }
 
 .modal__button:hover:not(:disabled) {
