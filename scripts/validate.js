@@ -44,26 +44,6 @@ function setEventListeners(formElement, options) {
   });
 }
 
-const enableValidation = (options) => {
-  const formElements = Array.from(
-    document.querySelectorAll(options.formSelector)
-  );
-  formElements.forEach((formElement) => {
-    formElement.addEventListener("submit", (event) => {
-      event.preventDefault();
-    });
-
-    setEventListeners(formElement, options);
-  });
-  console.log(formElements);
-};
-
-const hasInvalidInput = (inputElements) => {
-  return inputElements.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
-
 function toggleButtonState(inputElements, submitButton, options) {
   if (hasInvalidInput(inputElements)) {
     submitButton.classList.add(options.inactiveButtonClass);
@@ -88,3 +68,39 @@ const config = {
 };
 
 enableValidation(config);
+
+const hasInvalidInput = (inputElements) => {
+  return inputElements.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
+
+// Validate my forms
+//
+//Get list of all forms
+
+//Go through the list of forms, for each form, find list of its respective inputs
+const enableValidation = (options) => {
+  const formElements = Array.from(
+    document.querySelectorAll(options.formSelector)
+  );
+  formElements.forEach((formElement) => {
+    formElement.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+
+    setEventListeners(formElement, options);
+  });
+  console.log(formElements);
+};
+
+//Go through list of inputs, add listeners for user input
+
+//For input listeners, create functions to execute validity
+//check input is valid
+//if it is valid --> get rid of error because its valid
+//if it isnt valid --> show appropriate error --> function to find appropriate error
+//if it isnt valid, also disable the submit button
+//
+//
+//
