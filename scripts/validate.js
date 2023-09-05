@@ -54,10 +54,6 @@ function toggleButtonState(inputElements, submitButton, options) {
   }
 }
 
-// disable button function
-
-// enable button function
-
 const config = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
@@ -75,11 +71,6 @@ const hasInvalidInput = (inputElements) => {
   });
 };
 
-// Validate my forms
-//
-//Get list of all forms
-
-//Go through the list of forms, for each form, find list of its respective inputs
 const enableValidation = (options) => {
   const formElements = Array.from(
     document.querySelectorAll(options.formSelector)
@@ -93,14 +84,3 @@ const enableValidation = (options) => {
   });
   console.log(formElements);
 };
-
-//Go through list of inputs, add listeners for user input
-
-//For input listeners, create functions to execute validity
-//check input is valid
-//if it is valid --> get rid of error because its valid
-//if it isnt valid --> show appropriate error --> function to find appropriate error
-//if it isnt valid, also disable the submit button
-//
-//
-//
