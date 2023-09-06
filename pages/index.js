@@ -44,18 +44,13 @@ const profileModalTitle = document.querySelector(".modal__title");
 const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
 const addPicModal = document.querySelector("#add-modal");
-const addPicSubmitButton = addPicModal.querySelector(".modal__button");
 const addPicBtn = document.querySelector(".profile__add-button");
 const addPicModalCloseBtn = addPicModal.querySelector(".modal__close");
 const addPicModalName = addPicModal.querySelector(".modal__image-name");
 const addPicModalLink = addPicModal.querySelector(".modal__image-link");
 const imageModal = document.querySelector("#image-modal");
 const imageModalCloseBtn = imageModal.querySelector(".modal__close");
-// const cardTemplate =
-//   document.querySelector("#card-template").content.firstElementChild;
-// const cardTemplate = "#card-template";
 const cardListElement = document.querySelector(".gallery__cards");
-const modals = Array.from(document.querySelectorAll(".modal"));
 
 const validationSettings = {
   formSelector: ".modal__form",
@@ -88,63 +83,12 @@ function handleEditProfileFormSubmit(event) {
   closeModal(profileEditModal);
 }
 
-// function openModal(modal) {
-//   modal.classList.add("modal_opened");
-//   modal.addEventListener("mousedown", closeModalOnRemoteClick);
-//   document.addEventListener("keydown", closeModalOnEscape);
-// }
-
-// function closeModal(modal) {
-//   modal.classList.remove("modal_opened");
-//   modal.removeEventListener("mousedown", closeModalOnRemoteClick);
-//   document.removeEventListener("keydown", closeModalOnEscape);
-// }
-
-// function closeModalOnRemoteClick(event) {
-//   if (event.target === event.currentTarget) {
-//     closeModal(event.target);
-//   }
-// }
-
-// function closeModalOnEscape(event) {
-//   if (event.key === "Escape") {
-//     const openedModal = document.querySelector(".modal_opened");
-//     closeModal(openedModal);
-//   }
-// }
-
-// function getCardElement(data) {
-//   // const cardElement = cardTemplate.cloneNode(true);
-//   // const cardImageElement = cardElement.querySelector(".card__image");
-//   // const cardTitleElement = cardElement.querySelector(".card__title");
-//   // const imageDeleteBtn = cardElement.querySelector(".card__delete");
-//   // const likeButton = cardElement.querySelector(".card__like-button");
-//   // cardTitleElement.textContent = data.name;
-//   // cardImageElement.alt = data.name;
-//   // cardImageElement.src = data.link;
-
-//   // cardImageElement.addEventListener("click", () => {
-//   //   const popUpImage = imageModal.querySelector(".modal__image-preview");
-//   //   const popUpCaption = imageModal.querySelector(".modal__image-caption");
-//   //   popUpImage.src = cardImageElement.src;
-//   //   popUpImage.alt = cardImageElement.alt;
-//   //   popUpCaption.textContent = cardTitleElement.textContent;
-//   //   openModal(imageModal);
-//   // });
-//   // imageDeleteBtn.addEventListener("click", () => cardElement.remove());
-//   // likeButton.addEventListener("click", () =>
-//   //   likeButton.classList.toggle("card__like-button_active")
-//   // );
-//   // Return Card
-//   return cardElement;
-// }
-
 function handleImageClick() {
-  this._popUpImage = imageModal.querySelector(".modal__image-preview");
-  this._popUpCaption = imageModal.querySelector(".modal__image-caption");
-  this._popUpImage.src = this._cardImageElement.src;
-  this._popUpImage.alt = this._cardImageElement.alt;
-  this._popUpCaption.textContent = this._cardTitleElement.textContent;
+  const popUpImage = imageModal.querySelector(".modal__image-preview");
+  const popUpCaption = imageModal.querySelector(".modal__image-caption");
+  popUpImage.src = this._cardImageElement.src;
+  popUpImage.alt = this._cardImageElement.alt;
+  popUpCaption.textContent = this._cardTitleElement.textContent;
   openModal(imageModal);
 }
 
@@ -154,9 +98,7 @@ function handleAddPicture(event) {
   const link = addPicModalLink.value;
   renderCard({ name, link });
   event.target.reset();
-  addFormValidator.enableValidation();
-  // turn off submit button
-
+  addFormValidator.checkResetValidation();
   closeModal(addPicModal);
 }
 
@@ -174,7 +116,7 @@ profileModalForm.addEventListener("submit", handleEditProfileFormSubmit);
 profileEditBtn.addEventListener("click", () => {
   profileModalName.value = profileName.textContent;
   profileModalTitle.value = profileTitle.textContent;
-  editFormValidator.enableValidation();
+  editFormValidator.checkResetValidation();
   openModal(profileEditModal);
 });
 
