@@ -17,27 +17,27 @@ export default class FormValidator {
   }
 
   _showInputError(inputElement) {
-    this._errorMessageElement = this._formElement.querySelector(
+    const errorMessageElement = this._formElement.querySelector(
       `#${inputElement.id}-error`
     );
-    this._errorMessageRedLine = this._formElement.querySelector(
+    const errorMessageRedLine = this._formElement.querySelector(
       `#${inputElement.id}-redline`
     );
-    this._errorMessageRedLine.classList.add(this._inputErrorClass);
-    this._errorMessageElement.textContent = inputElement.validationMessage;
-    this._errorMessageElement.classList.add(this._errorClass);
+    errorMessageRedLine.classList.add(this._inputErrorClass);
+    errorMessageElement.textContent = inputElement.validationMessage;
+    errorMessageElement.classList.add(this._errorClass);
   }
 
   _hideInputError(inputElement) {
-    this._errorMessageElement = this._formElement.querySelector(
+    const errorMessageElement = this._formElement.querySelector(
       `#${inputElement.id}-error`
     );
-    this._errorMessageRedLine = this._formElement.querySelector(
+    const errorMessageRedLine = this._formElement.querySelector(
       `#${inputElement.id}-redline`
     );
-    this._errorMessageRedLine.classList.remove(this._inputErrorClass);
-    this._errorMessageElement.textContent = "";
-    this._errorMessageElement.classList.remove(this._errorClass);
+    errorMessageRedLine.classList.remove(this._inputErrorClass);
+    errorMessageElement.textContent = "";
+    errorMessageElement.classList.remove(this._errorClass);
   }
 
   _checkInputValidity(inputElement) {
@@ -88,10 +88,11 @@ export default class FormValidator {
 
   _setEventListeners() {
     this._setSubmitListener();
+    this._toggleButtonState(this._inputElements, this._submitButton);
 
     this._inputElements.forEach((inputElement) => {
       this._hideInputError(inputElement);
-      this._toggleButtonState(this._inputElements, this._submitButton);
+
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState(this._inputElements, this._submitButton);

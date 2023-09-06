@@ -154,7 +154,7 @@ function handleAddPicture(event) {
   const link = addPicModalLink.value;
   renderCard({ name, link });
   event.target.reset();
-  addPicSubmitButton.classList.add("modal__button_disabled");
+  addFormValidator.enableValidation();
   // turn off submit button
 
   closeModal(addPicModal);
