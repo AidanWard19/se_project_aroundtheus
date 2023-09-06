@@ -1,11 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import {
-  openModal,
-  closeModal,
-  closeModalOnEscape,
-  closeModalOnRemoteClick,
-} from "../utils/utils.js";
+import { openModal, closeModal } from "../utils/utils.js";
 
 const initialCards = [
   {
@@ -179,6 +174,7 @@ profileModalForm.addEventListener("submit", handleEditProfileFormSubmit);
 profileEditBtn.addEventListener("click", () => {
   profileModalName.value = profileName.textContent;
   profileModalTitle.value = profileTitle.textContent;
+  editFormValidator.enableValidation();
   openModal(profileEditModal);
 });
 

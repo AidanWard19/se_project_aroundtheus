@@ -64,11 +64,34 @@ export default class FormValidator {
     }
   }
 
-  _setEventListeners() {
+  _setSubmitListener() {
     this._formElement.addEventListener("submit", (event) => {
       event.preventDefault();
     });
+  }
+
+  _setResetValidationListeners() {
+    const profileEditBtn = document.querySelector(".profile__edit-button");
+    const addPicBtn = document.querySelector(".profile__add-button");
+
+    profileEditBtn.addEventListener("click", () => {
+      this._inputElements.forEach((inputElement) => {
+        this._hideInputError(inputElement);
+      });
+    });
+    addPicBtn.addEventListener("click", () => {
+      this._inputElements.forEach((inputElement) => {
+        this._checkInputValidity(inputElement);
+      });
+    });
+  }
+
+  _setEventListeners() {
+    this._setSubmitListener();
+
     this._inputElements.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+      this._toggleButtonState(this._inputElements, this._submitButton);
       inputElement.addEventListener("input", () => {
         this._checkInputValidity(inputElement);
         this._toggleButtonState(this._inputElements, this._submitButton);
@@ -80,5 +103,3 @@ export default class FormValidator {
     this._setEventListeners();
   }
 }
-
-// for index.js
