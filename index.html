@@ -32,7 +32,11 @@
           />
           <div class="profile__info">
             <h1 class="profile__name">Jacques Cousteau</h1>
-            <button type="button" class="profile__edit-button">
+            <button
+              type="button"
+              class="profile__edit-button"
+              id="edit-modal-open-button"
+            >
               <img
                 class="profile__edit-button-picture"
                 src="./images/vectoredit-sign.svg"
@@ -41,7 +45,11 @@
             </button>
             <p class="profile__title">Explorer</p>
           </div>
-          <button type="button" class="profile__add-button">
+          <button
+            type="button"
+            class="profile__add-button"
+            id="add-modal-open-button"
+          >
             <img
               class="profile__add-button-picture"
               src="./images/Vectorplus-sign.svg"
@@ -156,7 +164,7 @@
         ></button>
         <img
           class="modal__image-preview"
-          src="placeholder.jpeg"
+          src="./images/jacques-cousteau.jpg"
           alt="placeholder"
         />
         <p class="modal__image-caption"></p>
@@ -165,7 +173,11 @@
 
     <template id="card-template">
       <li class="card">
-        <img class="card__image" src="placeholder.jpeg" alt="placeholder" />
+        <img
+          class="card__image"
+          src="./images/jacques-cousteau.jpg"
+          alt="placeholder"
+        />
         <img
           class="card__delete"
           src="./images/Trash.svg"

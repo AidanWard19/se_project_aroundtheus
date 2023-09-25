@@ -51,7 +51,7 @@
   align-self: center;
 }
 
-.profile__edit-button:hover {
+.profile__edit-button-picture:hover {
   opacity: 0.6;
   cursor: pointer;
 }
@@ -101,19 +101,6 @@
     margin-right: 19px;
   }
 }
-
-/*
-@media screen and (min-width: 568px) and (max-width: 770px) {
-
-    .profile__add-button{
-        flex-shrink: 1;
-    }
-    
-    .profile__add-button-picture{
-        object-fit: fill;
-    }
-}
-*/
 
 @media screen and (max-width: 568px) {
   .profile {
