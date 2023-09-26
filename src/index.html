@@ -7,7 +7,8 @@
       name="viewport"
     />
     <title>Around The U.S.</title>
-    <link href="./pages/index.css" rel="stylesheet" />
+    <!-- <link href="./pages/index.css" rel="stylesheet" /> -->
+
     <link rel="shortcut icon" href="favicon.ico" />
   </head>
 
@@ -17,7 +18,7 @@
         <div class="header__container">
           <img
             class="header__logo"
-            src="./images/Vector.svg"
+            src="<%=require('./images/Vector.svg')%>"
             alt="Around The U.S. logo"
           />
         </div>
@@ -27,7 +28,7 @@
         <section class="profile">
           <img
             class="profile__picture"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Picture of Jacques Cousteau"
           />
           <div class="profile__info">
@@ -39,7 +40,7 @@
             >
               <img
                 class="profile__edit-button-picture"
-                src="./images/vectoredit-sign.svg"
+                src="<%=require('./images/vectoredit-sign.svg')%>"
                 alt="Add Button"
               />
             </button>
@@ -52,7 +53,7 @@
           >
             <img
               class="profile__add-button-picture"
-              src="./images/Vectorplus-sign.svg"
+              src="<%=require('./images/Vectorplus-sign.svg')%>"
               alt="Add Button"
             />
           </button>
@@ -164,7 +165,7 @@
         ></button>
         <img
           class="modal__image-preview"
-          src="./images/jacques-cousteau.jpg"
+          src="<%=require('./images/jacques-cousteau.jpg')%>"
           alt="placeholder"
         />
         <p class="modal__image-caption"></p>
@@ -175,12 +176,12 @@
       <li class="card">
         <img
           class="card__image"
-          src="./images/jacques-cousteau.jpg"
+          src="<%=require('./images/jacques-cousteau.jpg')%>"
           alt="placeholder"
         />
         <img
           class="card__delete"
-          src="./images/Trash.svg"
+          src="<%=require('./images/Trash.svg')%>"
           alt="delete button"
         />
         <div class="card__description">
@@ -190,7 +191,7 @@
       </li>
     </template>
 
-    <script src="./pages/index.js" type="module" defer></script>
+    <!-- <script src="./pages/index.js" type="module" defer></script> -->
     <!-- 
       <script src="./scripts/validate.js" defer></script> 
     -->
