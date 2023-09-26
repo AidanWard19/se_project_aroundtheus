@@ -3,8 +3,9 @@ import { openModal, closeModal } from "../utils/utils.js";
 export default class Popup {
   constructor({ popupSelector }) {
     this._popupElement = document.querySelector(popupSelector);
+    console.log(this._popupElement);
     this._closeButton = this._popupElement.querySelector(".modal__close");
-    // this._openButton = document.querySelector(`${popupSelector}-open-button`);
+    // this._openButton = this._popupElement.querySelector();
   }
 
   open() {
@@ -25,7 +26,7 @@ export default class Popup {
   // }
 
   setEventListeners() {
-    // this._openButton.addEventListener("click", open());
-    this._closeButton.addEventListener("click", close());
+    // this._openButton.addEventListener("click", this.open());
+    this._closeButton.addEventListener("click", this.close());
   }
 }
