@@ -69,7 +69,7 @@ function handleAddFormSubmit(data) {
 }
 
 function handleEditProfileFormSubmit(data) {
-  userDisplay.setUserInfo(data);
+  userInfo.setUserInfo(data);
   // profileName.textContent = profileModalName.value;
   // profileTitle.textContent = profileModalTitle.value;
   console.log(data);
@@ -80,26 +80,26 @@ function handleEditProfileFormSubmit(data) {
 // EVENT LISTENERS
 //
 
-profileModalForm.addEventListener("submit", handleEditProfileFormSubmit);
-
 profileEditBtn.addEventListener("click", () => {
-  profileModalName.value = profileName.textContent;
-  profileModalTitle.value = profileTitle.textContent;
-  editFormValidator.checkResetValidation();
+  const userInfo = userInfo.getUserInfo();
+  profileModalName.value = userInfo.username;
+  profileModalTitle.value = userInfo.job;
+  editFormValidator.resetValidation();
   editProfilePopup.open();
 });
 
-profileModalCloseBtn.addEventListener("click", () => {
-  editProfilePopup.close();
-});
+// profileModalCloseBtn.addEventListener("click", () => {
+//   editProfilePopup.close();
+// });
 
 addPicBtn.addEventListener("click", () => {
+  addFormValidator.resetValidation();
   addPicPopup.open();
 });
 
-addPicModalCloseBtn.addEventListener("click", () => {
-  addPicPopup.close();
-});
+// addPicModalCloseBtn.addEventListener("click", () => {
+//   addPicPopup.close();
+// });
 
 // addPicModalForm.addEventListener("submit", handleAddFormSubmit);
 
@@ -111,7 +111,7 @@ imageModalCloseBtn.addEventListener("click", () => {
 // User Info
 //
 
-const userDisplay = new UserInfo(".profile__name", ".profile__title");
+const userInfo = new UserInfo(".profile__name", ".profile__title");
 
 //
 // PopupWithForm
@@ -144,7 +144,7 @@ function renderCard(data) {
 
 const cardSection = new Section(
   { items: initialCards, renderer: renderCard },
-  cardGallery
+  ".gallery__cards"
 );
 
 cardSection.renderItems();
