@@ -10,20 +10,31 @@ export default class Popup {
 
   open() {
     openModal(this._popupElement);
+    document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
+    this._popupElement.addEventListener("mousedown", (evt) =>
+      this._closeOnRemoteClick(evt)
+    );
   }
 
   close() {
     closeModal(this._popupElement);
+    document.removeEventListener("keydown", (evt) => this._handleEscClose(evt));
+    this._popupElement.removeEventListener("mousedown", (evt) =>
+      this._closeOnRemoteClick(evt)
+    );
   }
 
-  // _handleEscClose(event) {
-  //   // I dont think I need this function since the open and close modals add and remove document event listener for esc key.
-  //   // if (event.key === "Escape") {
-  //   //   const openedModal = document.querySelector(".modal_opened");
-  //   //   this.close();
-  //   }
+  _handleEscClose(event) {
+    if (event.key === "Escape") {
+      this.close();
+    }
+  }
 
-  // }
+  _closeOnRemoteClick(event) {
+    if (event.target === event.currentTarget) {
+      this.close();
+    }
+  }
 
   setEventListeners() {
     // this._openButton.addEventListener("click", this.open());
