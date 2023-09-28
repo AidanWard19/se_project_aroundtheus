@@ -47,20 +47,22 @@ editFormValidator.enableValidation();
 const addPicModalForm = addPicModal.querySelector(".modal__form");
 const addFormValidator = new FormValidator(validationSettings, addPicModalForm);
 addFormValidator.enableValidation();
+//
+// User Info
+//
+
+const userInfo = new UserInfo(".profile__name", ".profile__title");
 
 //
 // FUNCTIONS
 //
 
 function handleImageClick() {
-  const popUpImage = imageModal.querySelector(".modal__image-preview");
-  const popUpCaption = imageModal.querySelector(".modal__image-caption");
-  // I think these two consts can be global
-  // test out to make sure
-  popUpImage.src = this._cardImageElement.src;
-  popUpImage.alt = this._cardImageElement.alt;
-  popUpCaption.textContent = this._cardTitleElement.textContent;
-  openModal(imageModal);
+  const data = {
+    link: this._cardImageElement.src,
+    name: this._cardImageElement.alt,
+  };
+  imagePreview.open(data);
 }
 
 function handleAddFormSubmit(data) {
@@ -81,9 +83,9 @@ function handleEditProfileFormSubmit(data) {
 //
 
 profileEditBtn.addEventListener("click", () => {
-  const userInfo = userInfo.getUserInfo();
-  profileModalName.value = userInfo.username;
-  profileModalTitle.value = userInfo.job;
+  const data = userInfo.getUserInfo();
+  profileModalName.value = data.username;
+  profileModalTitle.value = data.job;
   editFormValidator.resetValidation();
   editProfilePopup.open();
 });
@@ -106,12 +108,6 @@ addPicBtn.addEventListener("click", () => {
 imageModalCloseBtn.addEventListener("click", () => {
   imagePreview.close();
 });
-
-//
-// User Info
-//
-
-const userInfo = new UserInfo(".profile__name", ".profile__title");
 
 //
 // PopupWithForm
