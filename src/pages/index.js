@@ -10,7 +10,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
-import { openModal, closeModal } from "../utils/utils.js";
+// import { openModal, closeModal } from "../utils/utils.js";
 
 //
 // CONST IMPORT
@@ -57,10 +57,10 @@ const userInfo = new UserInfo(".profile__name", ".profile__title");
 // FUNCTIONS
 //
 
-function handleImageClick() {
+function handleImageClick(card) {
   const data = {
-    link: this._cardImageElement.src,
-    name: this._cardImageElement.alt,
+    link: card.src,
+    name: card.alt,
   };
   imagePreview.open(data);
 }

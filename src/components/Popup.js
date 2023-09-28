@@ -1,4 +1,4 @@
-import { openModal, closeModal } from "../utils/utils.js";
+// import { openModal, closeModal } from "../utils/utils.js";
 
 export default class Popup {
   constructor({ popupSelector }) {
@@ -9,32 +9,31 @@ export default class Popup {
   }
 
   open() {
-    openModal(this._popupElement);
-    document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
-    this._popupElement.addEventListener("mousedown", (evt) =>
-      this._closeOnRemoteClick(evt)
-    );
+    this._popupElement.classList.add("modal_opened");
+    document.addEventListener("keydown", this._handleEscClose);
+    this._popupElement.addEventListener("mousedown", this._closeOnRemoteClick);
   }
 
   close() {
-    closeModal(this._popupElement);
-    document.removeEventListener("keydown", (evt) => this._handleEscClose(evt));
-    this._popupElement.removeEventListener("mousedown", (evt) =>
-      this._closeOnRemoteClick(evt)
+    this._popupElement.classList.remove("modal_opened");
+    document.removeEventListener("keydown", this._handleEscClose);
+    this._popupElement.removeEventListener(
+      "mousedown",
+      this._closeOnRemoteClick
     );
   }
 
-  _handleEscClose(event) {
+  _handleEscClose = (event) => {
     if (event.key === "Escape") {
       this.close();
     }
-  }
+  };
 
-  _closeOnRemoteClick(event) {
+  _closeOnRemoteClick = (event) => {
     if (event.target === event.currentTarget) {
       this.close();
     }
-  }
+  };
 
   setEventListeners() {
     // this._openButton.addEventListener("click", this.open());

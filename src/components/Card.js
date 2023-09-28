@@ -12,7 +12,7 @@ export default class Card {
     );
     this._likeButton.addEventListener("click", () => this._handleLikeButton());
     this._cardImageElement.addEventListener("click", () =>
-      this._handleImageClick(this)
+      this._handleImageClick(this._cardImageElement)
     );
   }
 
@@ -33,6 +33,7 @@ export default class Card {
   }
 
   _setCardElements() {
+    this._cardImageElement = this._cardElement.querySelector(".card__image");
     this._cardImageElement.alt = this._name;
     this._cardImageElement.src = this._link;
     this._cardTitleElement.textContent = this._name;
@@ -42,7 +43,7 @@ export default class Card {
     this._cardElement = this._getTemplate();
     this._cardTitleElement = this._cardElement.querySelector(".card__title");
     this._likeButton = this._cardElement.querySelector(".card__like-button");
-    this._cardImageElement = this._cardElement.querySelector(".card__image");
+
     this._imageDeleteBtn = this._cardElement.querySelector(".card__delete");
 
     this._setCardElements();
