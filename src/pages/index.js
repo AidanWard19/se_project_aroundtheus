@@ -84,8 +84,8 @@ function handleEditProfileFormSubmit(data) {
 
 profileEditBtn.addEventListener("click", () => {
   const data = userInfo.getUserInfo();
-  profileModalName.value = data.username;
-  profileModalTitle.value = data.job;
+  profileModalName.value = data.name;
+  profileModalTitle.value = data.about;
   editFormValidator.resetValidation();
   editProfilePopup.open();
 });
