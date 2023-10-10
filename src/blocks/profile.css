@@ -13,6 +13,11 @@
   margin: 0;
 }
 
+.profile__picture:hover {
+  cursor: pointer;
+  opacity: 0.3;
+}
+
 .profile__info {
   color: white;
   display: grid;

@@ -47,3 +47,5 @@ export const validationSettings = {
   errorClass: "modal__error_visible",
 };
 export const profileModalForm = profileEditModal.querySelector(".modal__form");
+export const profileUpdateAvatarBtn =
+  document.querySelector(".profile__picture");
