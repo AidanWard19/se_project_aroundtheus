@@ -25,19 +25,21 @@ import {
   validationSettings,
   profileModalForm,
   profileUpdateAvatarBtn,
+  confirmDeleteButton,
+  avatarModalForm,
 } from "../utils/const.js";
 import PopupConfirmation from "../components/PopupConfirmation";
 
 //
 // API
 //
-// const api = new Api({
-//   baseUrl: "https://around-api.en.tripleten-services.com/v1",
-//   headers: {
-//     authorization: "d854fb88-5689-4d51-b447-dfc184cb771b",
-//     "Content-Type": "application/json",
-//   },
-// });
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "31c1ab52-e879-47ed-8b1f-8618956a09b8",
+    "Content-Type": "application/json",
+  },
+});
 
 //
 // FORM VALIDATION
@@ -52,6 +54,12 @@ editFormValidator.enableValidation();
 const addPicModalForm = addPicModal.querySelector(".modal__form");
 const addFormValidator = new FormValidator(validationSettings, addPicModalForm);
 addFormValidator.enableValidation();
+
+const updateAvatarFormValidator = new FormValidator(
+  validationSettings,
+  avatarModalForm
+);
+updateAvatarFormValidator.enableValidation();
 
 //
 // User Info
@@ -82,8 +90,18 @@ function handleEditProfileFormSubmit(data) {
   editProfilePopup.close();
 }
 
-function handleAvatarFormSubmit() {
-  updateAvatar.close();
+function handleAvatarFormSubmit(input) {
+  updateAvatar.renderLoading(true);
+  api
+    .updateProfilePic(input)
+    .then(() => {
+      profileUpdateAvatarBtn.src = input.link;
+      updateAvatar.close();
+    })
+    .catch((err) => console.error(err))
+    .finally(() => {
+      updateAvatar.renderLoading(false);
+    });
 }
 
 function handleConfirmDelete() {
@@ -97,17 +115,18 @@ function handleAttemptDelete() {
 // Update Avatar
 //
 
-const updateAvatar = new PopupWithForm("#avatar-modal", handleAvatarFormSubmit);
+const updateAvatar = new PopupWithForm(
+  "#avatar-modal",
+  handleAvatarFormSubmit,
+  "Save"
+);
 updateAvatar.setEventListeners();
 
 //
 // Confirmation Modal
 //
 
-const confirmDelete = new PopupConfirmation(
-  "#confirm-modal",
-  handleConfirmDelete
-);
+const confirmDelete = new PopupConfirmation("#confirm-modal");
 confirmDelete.setEventListeners();
 
 //
@@ -139,12 +158,17 @@ profileUpdateAvatarBtn.addEventListener("click", () => {
 // PopupWithForm
 //
 
-const addPicPopup = new PopupWithForm("#add-modal", handleAddFormSubmit);
+const addPicPopup = new PopupWithForm(
+  "#add-modal",
+  handleAddFormSubmit,
+  "Create"
+);
 addPicPopup.setEventListeners();
 
 const editProfilePopup = new PopupWithForm(
   "#edit-modal",
-  handleEditProfileFormSubmit
+  handleEditProfileFormSubmit,
+  "Save"
 );
 editProfilePopup.setEventListeners();
 
@@ -164,7 +188,8 @@ function renderCard(data) {
     data,
     "#card-template",
     handleImageClick,
-    handleAttemptDelete
+    handleAttemptDelete,
+    confirmDeleteButton
   );
   cardSection.addItem(card.getView());
 }
