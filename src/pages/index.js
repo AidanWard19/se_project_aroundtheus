@@ -36,7 +36,7 @@ import PopupConfirmation from "../components/PopupConfirmation";
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "31c1ab52-e879-47ed-8b1f-8618956a09b8",
+    authorization: "799c4be9-a1c3-44a2-bda1-67abb1e7f630",
     "Content-Type": "application/json",
   },
 });
@@ -104,9 +104,9 @@ function handleAvatarFormSubmit(input) {
     });
 }
 
-function handleConfirmDelete() {
-  confirmDelete.close();
-}
+// function handleConfirmDelete() {
+//   confirmDelete.close();
+// }
 
 function handleAttemptDelete() {
   confirmDelete.open();
