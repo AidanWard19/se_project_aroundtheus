@@ -80,18 +80,42 @@ function handleImageClick(card) {
 }
 
 function handleAddFormSubmit(data) {
-  renderCard(data);
-  addPicPopup.close();
+  addPicPopup.renderLoading(true);
+  api
+    .addCard(data)
+    .then(() => {
+      renderCard(data);
+      addPicPopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      addPicPopup.renderLoading(false);
+    });
 }
 
 function handleEditProfileFormSubmit(data) {
-  userInfo.setUserInfo(data);
-  console.log(data);
-  editProfilePopup.close();
+  // userInfo.setUserInfo(data);
+  editProfilePopup.renderLoading(true);
+
+  api
+    .editUserInfo(data)
+    .then(() => {
+      userInfo.setUserInfo(data);
+      editProfilePopup.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      editProfilePopup.renderLoading(false);
+    });
 }
 
 function handleAvatarFormSubmit(input) {
   updateAvatar.renderLoading(true);
+
   api
     .updateProfilePic(input)
     .then(() => {
@@ -104,9 +128,16 @@ function handleAvatarFormSubmit(input) {
     });
 }
 
-// function handleConfirmDelete() {
-//   confirmDelete.close();
-// }
+function handleCardLike(cardID) {
+  api
+    .addLike(cardID)
+    .then((isLiked) => {
+      this.setLikeState(isLiked);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
 
 function handleAttemptDelete() {
   confirmDelete.open();
@@ -188,8 +219,8 @@ function renderCard(data) {
     data,
     "#card-template",
     handleImageClick,
-    handleAttemptDelete,
-    confirmDeleteButton
+    handleCardLike,
+    handleAttemptDelete
   );
   cardSection.addItem(card.getView());
 }

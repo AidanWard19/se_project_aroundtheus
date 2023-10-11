@@ -1,26 +1,16 @@
 export default class Card {
-  constructor(
-    data,
-    cardSelector,
-    handleImageClick,
-    handleAttemptDelete,
-    confirmDeleteButton
-  ) {
+  constructor(data, cardSelector, handleImageClick, handleAttemptDelete) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleAttemptDelete = handleAttemptDelete;
-    // this._confirmDeleteButton = confirmDeleteButton;
   }
 
   _setEventListeners() {
     this._imageDeleteBtn.addEventListener("click", () =>
       this._handleAttemptDelete()
     );
-    // this._confirmDeleteButton.addEventListener("click", () =>
-    //   this._handleDeleteButton()
-    // );
     this._likeButton.addEventListener("click", () => this._handleLikeButton());
     this._cardImageElement.addEventListener("click", () =>
       this._handleImageClick(this._cardImageElement)
