@@ -47,9 +47,12 @@ export const validationSettings = {
   errorClass: "modal__error_visible",
 };
 export const profileModalForm = profileEditModal.querySelector(".modal__form");
-export const profileUpdateAvatarBtn =
-  document.querySelector(".profile__picture");
+export const profileUpdateAvatarBtn = document.querySelector(
+  ".profile__picture-overlay"
+);
+export const profilePicture = document.querySelector(".profile__picture");
 export const avatarModal = document.querySelector("#avatar-modal");
 export const avatarModalForm = avatarModal.querySelector(".modal__form");
 export const confirmModal = document.querySelector("#confirm-modal");
 export const confirmDeleteButton = confirmModal.querySelector(".modal__button");
+export const confirmDeleteForm = confirmModal.querySelector(".modal__form");

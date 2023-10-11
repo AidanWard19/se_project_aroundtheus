@@ -1,15 +1,28 @@
+import { confirmDeleteForm } from "../utils/const.js";
+
 export default class Card {
-  constructor(data, cardSelector, handleImageClick, handleAttemptDelete) {
+  constructor(
+    data,
+    cardSelector,
+    handleImageClick,
+    handleAttemptDelete,
+    handleConfirmDelete
+  ) {
     this._name = data.name;
     this._link = data.link;
+    this._cardId = data._id;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleAttemptDelete = handleAttemptDelete;
+    this._handleConfirmDelete = handleConfirmDelete;
   }
 
   _setEventListeners() {
     this._imageDeleteBtn.addEventListener("click", () =>
       this._handleAttemptDelete()
+    );
+    confirmDeleteForm.addEventListener("submit", () =>
+      this._handleConfirmDelete(this._cardId)
     );
     this._likeButton.addEventListener("click", () => this._handleLikeButton());
     this._cardImageElement.addEventListener("click", () =>
@@ -44,7 +57,6 @@ export default class Card {
     this._cardElement = this._getTemplate();
     this._cardTitleElement = this._cardElement.querySelector(".card__title");
     this._likeButton = this._cardElement.querySelector(".card__like-button");
-
     this._imageDeleteBtn = this._cardElement.querySelector(".card__delete");
 
     this._setCardElements();

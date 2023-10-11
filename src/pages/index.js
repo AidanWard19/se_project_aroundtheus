@@ -25,7 +25,7 @@ import {
   validationSettings,
   profileModalForm,
   profileUpdateAvatarBtn,
-  confirmDeleteButton,
+  profilePicture,
   avatarModalForm,
 } from "../utils/const.js";
 import PopupConfirmation from "../components/PopupConfirmation";
@@ -67,6 +67,15 @@ updateAvatarFormValidator.enableValidation();
 
 const userInfo = new UserInfo(".profile__name", ".profile__title");
 
+api
+  .getUserInfo()
+  .then((data) => {
+    userInfo.setUserInfo(data);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
 //
 // FUNCTIONS
 //
@@ -96,7 +105,6 @@ function handleAddFormSubmit(data) {
 }
 
 function handleEditProfileFormSubmit(data) {
-  // userInfo.setUserInfo(data);
   editProfilePopup.renderLoading(true);
 
   api
@@ -119,7 +127,7 @@ function handleAvatarFormSubmit(input) {
   api
     .updateProfilePic(input)
     .then(() => {
-      profileUpdateAvatarBtn.src = input.link;
+      profilePicture.src = input.link;
       updateAvatar.close();
     })
     .catch((err) => console.error(err))
@@ -141,6 +149,19 @@ function handleAvatarFormSubmit(input) {
 
 function handleAttemptDelete() {
   confirmDelete.open();
+}
+
+function handleConfirmDelete(cardID) {
+  confirmDelete.renderLoading(true);
+  api
+    .deleteCard(cardId)
+    .then(() => {
+      confirmDelete.close();
+    })
+    .catch((err) => console.error(err))
+    .finally(() => {
+      confirmDelete.renderLoading(false);
+    });
 }
 //
 // Update Avatar
@@ -165,11 +186,21 @@ confirmDelete.setEventListeners();
 //
 
 profileEditBtn.addEventListener("click", () => {
-  const data = userInfo.getUserInfo();
-  profileModalName.value = data.name;
-  profileModalTitle.value = data.about;
-  editFormValidator.resetValidation();
-  editProfilePopup.open();
+  api
+    .getUserInfo()
+    .then((data) => {
+      profileModalName.value = data.name;
+      profileModalTitle.value = data.about;
+    })
+    .then(() => {
+      editFormValidator.resetValidation();
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+    .finally(() => {
+      editProfilePopup.open();
+    });
 });
 
 addPicBtn.addEventListener("click", () => {
@@ -219,7 +250,8 @@ function renderCard(data) {
     data,
     "#card-template",
     handleImageClick,
-    handleAttemptDelete
+    handleAttemptDelete,
+    handleConfirmDelete
   );
   cardSection.addItem(card.getView());
 }

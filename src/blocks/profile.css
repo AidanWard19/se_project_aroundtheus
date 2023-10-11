@@ -11,11 +11,33 @@
   width: 127.5px;
   height: 127.5px;
   margin: 0;
+  display: block;
 }
 
 .profile__picture:hover {
   cursor: pointer;
-  opacity: 0.3;
+  opacity: 0.6;
+}
+
+.profile__picture-overlay {
+  position: absolute;
+  opacity: 0;
+  height: 127.5px;
+  width: 127.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: opacity 0.25s;
+}
+
+.profile__picture-overlay:hover {
+  opacity: 1;
+}
+
+.profile__picture-edit-icon {
+  width: 26px;
+  height: 26px;
 }
 
 .profile__info {
