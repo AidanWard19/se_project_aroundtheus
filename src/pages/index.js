@@ -128,16 +128,16 @@ function handleAvatarFormSubmit(input) {
     });
 }
 
-function handleCardLike(cardID) {
-  api
-    .addLike(cardID)
-    .then((isLiked) => {
-      this.setLikeState(isLiked);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-}
+// function handleCardLike(cardID) {
+//   api
+//     .addLike(cardID)
+//     .then((isLiked) => {
+//       this.setLikeState(isLiked);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
+// }
 
 function handleAttemptDelete() {
   confirmDelete.open();
@@ -219,7 +219,6 @@ function renderCard(data) {
     data,
     "#card-template",
     handleImageClick,
-    handleCardLike,
     handleAttemptDelete
   );
   cardSection.addItem(card.getView());
