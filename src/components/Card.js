@@ -47,10 +47,11 @@ export default class Card {
   }
 
   setLikeState(isLiked) {
-    if (isLiked) {
-      this._likeButton.classList.remove("card__like-button_active");
-    } else {
+    this._likedState = isLiked;
+    if (this._likedState) {
       this._likeButton.classList.add("card__like-button_active");
+    } else {
+      this._likeButton.classList.remove("card__like-button_active");
     }
   }
 
