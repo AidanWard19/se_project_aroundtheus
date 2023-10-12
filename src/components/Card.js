@@ -28,9 +28,9 @@ export default class Card {
     });
     this._likeButton.addEventListener("click", () => {
       if (this._likedState) {
-        this._handleRemoveLike(this._cardId);
+        this._handleRemoveLike(this, this._cardId);
       } else {
-        this._handleAddLike(this._cardId);
+        this._handleAddLike(this, this._cardId);
       }
     });
     this._cardImageElement.addEventListener("click", () =>
