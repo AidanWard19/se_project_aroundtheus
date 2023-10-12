@@ -185,8 +185,8 @@ function handleAvatarFormSubmit(data) {
   console.log(data);
   api
     .updateProfilePic(data)
-    .then(() => {
-      profilePicture.src = data.link;
+    .then((data) => {
+      userInfo.setUserInfo(data);
     })
     .then(() => {
       updateAvatar.close();
