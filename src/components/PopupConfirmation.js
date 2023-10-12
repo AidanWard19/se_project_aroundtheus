@@ -11,6 +11,8 @@ export default class PopupConfirmation extends Popup {
   getCardInfo(cardElement, cardId) {
     this._cardElement = cardElement;
     this._cardId = cardId;
+    console.log(this._cardElement);
+    console.log(this._cardId);
   }
 
   deleteConfirmed(cardElement, cardId) {

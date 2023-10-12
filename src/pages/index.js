@@ -70,7 +70,9 @@ const userInfo = new UserInfo(".profile__name", ".profile__title");
 api
   .getUserInfo()
   .then((data) => {
+    console.log(data);
     userInfo.setUserInfo(data);
+    profilePicture.src = data.avatar;
   })
   .catch((err) => {
     console.error(err);
@@ -92,7 +94,7 @@ function handleAddFormSubmit(data) {
   addPicPopup.renderLoading(true);
   api
     .addCard(data)
-    .then(() => {
+    .then((data) => {
       renderCard(data);
       addPicPopup.close();
     })
@@ -121,13 +123,34 @@ function handleEditProfileFormSubmit(data) {
     });
 }
 
-function handleAvatarFormSubmit(input) {
-  updateAvatar.renderLoading(true);
+let cardSection;
 
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([data, initialCards]) => {
+    console.log(data);
+    userInfo.setUserInfo(data);
+    profilePicture.src = data.avatar;
+    cardSection = new Section(
+      {
+        items: initialCards,
+        renderer: renderCard,
+      },
+      ".gallery__cards"
+    );
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+
+function handleAvatarFormSubmit(data) {
+  updateAvatar.renderLoading(true);
+  console.log(data);
   api
-    .updateProfilePic(input)
+    .updateProfilePic(data)
     .then(() => {
-      profilePicture.src = input.link;
+      console.log(data);
+      profilePicture.src = data.link;
       updateAvatar.close();
     })
     .catch((err) => console.error(err))
@@ -161,6 +184,7 @@ function handleRemoveLike(cardID) {
 }
 
 function handleAttemptDelete(cardElement, cardId) {
+  console.log(cardId);
   confirmDelete.open();
   confirmDelete.getCardInfo(cardElement, cardId);
 }
@@ -299,21 +323,3 @@ function renderCard(data) {
 //
 // Initial Cards API
 //
-
-let cardSection;
-
-api
-  .getInitialCards()
-  .then((initialCards) => {
-    cardSection = new Section(
-      {
-        items: initialCards,
-        renderer: renderCard,
-      },
-      ".gallery__cards"
-    );
-    cardSection.renderItems();
-  })
-  .catch((err) => {
-    console.error(err);
-  });

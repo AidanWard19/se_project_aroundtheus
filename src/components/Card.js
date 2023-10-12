@@ -22,9 +22,10 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._imageDeleteBtn.addEventListener("click", () =>
-      this._handleAttemptDelete(this._cardElement, this._cardId)
-    );
+    this._imageDeleteBtn.addEventListener("click", () => {
+      console.log(this._cardElement, this._cardId);
+      this._handleAttemptDelete(this._cardElement, this._cardId);
+    });
     this._likeButton.addEventListener("click", () => {
       if (this._likedState) {
         this._handleRemoveLike(this._cardId);
