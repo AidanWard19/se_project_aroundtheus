@@ -136,22 +136,35 @@ function handleAvatarFormSubmit(input) {
     });
 }
 
-// function handleCardLike(cardID) {
-//   api
-//     .addLike(cardID)
-//     .then((isLiked) => {
-//       this.setLikeState(isLiked);
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//     });
-// }
+function handleAddLike(cardID) {
+  api
+    .addLike(cardID)
+    .then((data) => {
+      console.log(data);
+      this.setLikeState(data.isLiked);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+function handleRemoveLike(cardID) {
+  api
+    .removeLike(cardID)
+    .then((data) => {
+      console.log(data);
+      this.setLikeState(data.isLiked);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
 
 function handleAttemptDelete() {
   confirmDelete.open();
 }
 
-function handleConfirmDelete(cardID) {
+function handleConfirmDelete(cardId) {
   confirmDelete.renderLoading(true);
   api
     .deleteCard(cardId)
@@ -250,15 +263,39 @@ function renderCard(data) {
     data,
     "#card-template",
     handleImageClick,
+    handleAddLike,
+    handleRemoveLike,
     handleAttemptDelete,
     handleConfirmDelete
   );
   cardSection.addItem(card.getView());
 }
 
-const cardSection = new Section(
-  { items: initialCards, renderer: renderCard },
-  ".gallery__cards"
-);
+// const cardSection = new Section(
+//   { items: initialCards, renderer: renderCard },
+//   ".gallery__cards"
+// );
 
-cardSection.renderItems();
+// cardSection.renderItems();
+
+//
+// Initial Cards API
+//
+
+let cardSection;
+
+api
+  .getInitialCards()
+  .then((initialCards) => {
+    cardSection = new Section(
+      {
+        items: initialCards,
+        renderer: renderCard,
+      },
+      ".gallery__cards"
+    );
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.error(err);
+  });

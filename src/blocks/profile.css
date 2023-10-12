@@ -33,6 +33,7 @@
 
 .profile__picture-overlay:hover {
   opacity: 1;
+  cursor: pointer;
 }
 
 .profile__picture-edit-icon {
