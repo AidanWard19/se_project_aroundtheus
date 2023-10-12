@@ -7,8 +7,7 @@ export default class Card {
     handleImageClick,
     handleAddLike,
     handleRemoveLike,
-    handleAttemptDelete,
-    handleConfirmDelete
+    handleAttemptDelete
   ) {
     this._name = data.name;
     this._link = data.link;
@@ -19,17 +18,13 @@ export default class Card {
     this._handleAddLike = handleAddLike;
     this._handleRemoveLike = handleRemoveLike;
     this._handleAttemptDelete = handleAttemptDelete;
-    this._handleConfirmDelete = handleConfirmDelete;
     console.log(data);
   }
 
   _setEventListeners() {
     this._imageDeleteBtn.addEventListener("click", () =>
-      this._handleAttemptDelete()
+      this._handleAttemptDelete(this._cardElement, this._cardId)
     );
-    confirmDeleteForm.addEventListener("submit", () => {
-      this._handleConfirmDelete(this._cardId);
-    });
     this._likeButton.addEventListener("click", () => {
       if (this._likedState) {
         this._handleRemoveLike(this._cardId);

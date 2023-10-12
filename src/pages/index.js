@@ -160,22 +160,41 @@ function handleRemoveLike(cardID) {
     });
 }
 
-function handleAttemptDelete() {
+function handleAttemptDelete(cardElement, cardId) {
   confirmDelete.open();
+  confirmDelete.getCardInfo(cardElement, cardId);
 }
 
-function handleConfirmDelete(cardId) {
-  confirmDelete.renderLoading(true);
+// function handleConfirmDelete(cardId) {
+//   confirmDelete.renderLoading(true);
+//   api
+//     .deleteCard(cardId)
+//     .then(() => {
+//       confirmDelete.close();
+//     })
+//     .catch((err) => console.error(err))
+//     .finally(() => {
+//       confirmDelete.renderLoading(false);
+//     });
+// }
+
+function deleteHandler(cardElement, cardId) {
+  this.renderLoading(true);
   api
     .deleteCard(cardId)
     .then(() => {
-      confirmDelete.close();
+      this.close();
+    })
+    .then(() => {
+      cardElement.remove();
+      cardElement = null;
     })
     .catch((err) => console.error(err))
     .finally(() => {
-      confirmDelete.renderLoading(false);
+      this.renderLoading(false);
     });
 }
+
 //
 // Update Avatar
 //
@@ -191,7 +210,7 @@ updateAvatar.setEventListeners();
 // Confirmation Modal
 //
 
-const confirmDelete = new PopupConfirmation("#confirm-modal");
+const confirmDelete = new PopupConfirmation("#confirm-modal", deleteHandler);
 confirmDelete.setEventListeners();
 
 //
@@ -265,8 +284,7 @@ function renderCard(data) {
     handleImageClick,
     handleAddLike,
     handleRemoveLike,
-    handleAttemptDelete,
-    handleConfirmDelete
+    handleAttemptDelete
   );
   cardSection.addItem(card.getView());
 }
