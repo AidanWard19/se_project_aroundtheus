@@ -30,6 +30,13 @@
             src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="Picture of Jacques Cousteau"
           />
+          <div class="profile__picture-overlay">
+            <img
+              class="profile__picture-edit-icon"
+              src="<%=require('./images/editPencil.svg')%>"
+              alt="edit profile picture icon"
+            />
+          </div>
           <div class="profile__info">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <button
@@ -168,6 +175,53 @@
           alt="placeholder"
         />
         <p class="modal__image-caption"></p>
+      </div>
+    </div>
+
+    <div class="modal" id="confirm-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="modal__close-add"
+          type="button"
+        ></button>
+        <h2 class="modal__heading">Are you sure?</h2>
+
+        <form class="modal__form">
+          <button class="modal__button" type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container">
+        <button
+          class="modal__close"
+          id="modal__close-add"
+          type="button"
+        ></button>
+        <h2 class="modal__heading">Change profile picture</h2>
+
+        <form class="modal__form">
+          <input
+            class="modal__input modal__title modal__image-link"
+            id="image-link"
+            type="url"
+            name="link"
+            placeholder="Image link"
+            required
+          />
+          <div class="modal__text-underline" id="image-link-redline">
+            <span class="modal__error" id="image-link-error">test</span>
+          </div>
+          <button
+            disabled
+            class="modal__button modal__button_disabled"
+            type="submit"
+          >
+            Save
+          </button>
+        </form>
       </div>
     </div>
 
