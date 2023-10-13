@@ -221,26 +221,27 @@ function handleRemoveLike(card, cardID) {
     });
 }
 
-function handleAttemptDelete(cardElement, cardId) {
+function handleAttemptDelete(cardElement, cardId, card) {
   console.log(cardId);
   confirmDelete.open();
-  confirmDelete.getCardInfo(cardElement, cardId);
+  confirmDelete.getCardInfo(cardElement, cardId, card);
 }
 
-function deleteHandler(cardElement, cardId) {
-  this.renderLoading(true);
+function deleteHandler(cardElement, cardId, card) {
+  console.log(card);
+  confirmDelete.renderLoading(true);
   api
     .deleteCard(cardId)
-    .then(() => {
-      this.close();
-    })
     .then(() => {
       cardElement.remove();
       cardElement = null;
     })
+    .then(() => {
+      confirmDelete.close();
+    })
     .catch((err) => console.error(err))
     .finally(() => {
-      this.renderLoading(false);
+      confirmDelete.renderLoading(false);
     });
 }
 

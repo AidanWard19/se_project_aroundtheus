@@ -24,7 +24,7 @@ export default class Card {
   _setEventListeners() {
     this._imageDeleteBtn.addEventListener("click", () => {
       console.log(this._cardElement, this._cardId);
-      this._handleAttemptDelete(this._cardElement, this._cardId);
+      this._handleAttemptDelete(this._cardElement, this._cardId, this);
     });
     this._likeButton.addEventListener("click", () => {
       if (this._likedState) {

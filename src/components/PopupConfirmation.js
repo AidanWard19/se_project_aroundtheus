@@ -8,15 +8,16 @@ export default class PopupConfirmation extends Popup {
     this._deleteHandler = deleteHandler;
   }
 
-  getCardInfo(cardElement, cardId) {
+  getCardInfo(cardElement, cardId, card) {
     this._cardElement = cardElement;
     this._cardId = cardId;
+    this._card = card;
     console.log(this._cardElement);
     console.log(this._cardId);
   }
 
-  deleteConfirmed(cardElement, cardId) {
-    this._deleteHandler(cardElement, cardId);
+  deleteConfirmed(cardElement, cardId, card) {
+    this._deleteHandler(cardElement, cardId, card);
   }
 
   renderLoading(isLoading) {
@@ -30,7 +31,7 @@ export default class PopupConfirmation extends Popup {
   setEventListeners() {
     this._popupForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      this.deleteConfirmed(this._cardElement, this._cardId);
+      this.deleteConfirmed(this._cardElement, this._cardId, this._card);
     });
     super.setEventListeners();
   }
