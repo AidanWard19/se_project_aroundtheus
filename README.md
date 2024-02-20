@@ -9,7 +9,7 @@ https://aidanward19.github.io/se_project_aroundtheus
 # Aidan Ward 7/2023 - 10/2023
 
 ### Overview
-Website has dynamic scaling depending on device screen resolution and uses RestAPI requests to persist web data, including like statuses, gallery contents, profile picture, profile name, and profile description.
+Mock web app with dynamic scaling depending on device screen resolution. Uses RestAPI requests to persist web data, including like statuses, gallery contents, profile picture, profile name, and profile description.
 
 
 
