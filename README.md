@@ -11,9 +11,5 @@ https://aidanward19.github.io/se_project_aroundtheus
 ### Overview
 Mock web app with dynamic scaling depending on device screen resolution. Uses RestAPI requests to persist web data, including like statuses, gallery contents, profile picture, profile name, and profile description.
 
-### Plans to Improve
-
-- Change radio options for selecting clothing item appropriate weather to be multiple instead of selecting one i.e. article of clothing might be wearable in hot AND warm weather
-- Adjust onRemoteClick if condition for modals so that they don't close when highlighting text and cursor leaves modal window while mouse is pressed -- either event.currentTarget or the listener it is applied to needs to be changed
 
 
